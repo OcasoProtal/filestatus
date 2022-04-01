@@ -27,12 +27,27 @@ export function activate(context: vscode.ExtensionContext) {
 function updateStatusBarItem(): void {
 	const currentFilePath = vscode.window.activeTextEditor?.document.fileName;
 	if (currentFilePath) {
+		const stats = fs.statSync(currentFilePath);
+		var fileSize = getFileSize(stats.size);
 
-		fileStatusBarItem.text = `$(file) ${path.basename(currentFilePath)}`;
+		fileStatusBarItem.text = `$(file) ${path.basename(currentFilePath)}: ${fileSize}`;
 		fileStatusBarItem.show();
 	} else {
 		fileStatusBarItem.hide();
 	}
+}
+
+function getFileSize(fileSize: number):string {
+	if (fileSize < 1024) {
+		return `${fileSize.toString()}B`;
+	}
+	if (fileSize < 1024*1024) {
+		return `${(fileSize/1024).toFixed(2)}KB`;
+	}
+	if (fileSize < 1024*1024*1024) {
+		return `${(fileSize/ (1024*1024)).toFixed(2)}MB`;
+	}
+	return `${(fileSize/ (1024*1024*1024)).toFixed(2)}GB`;
 }
 
 export function deactivate() { }
