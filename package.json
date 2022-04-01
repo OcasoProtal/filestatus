@@ -10,14 +10,14 @@
 		"Other"
 	],
 	"activationEvents": [
-        "onCommand:filestatus.helloWorld"
+        "onCommand:filestatus.fileStatus"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
 		"commands": [
 			{
-				"command": "filestatus.helloWorld",
-				"title": "Hello World"
+				"command": "filestatus.fileStatus",
+				"title": "File Status"
 			}
 		]
 	},
