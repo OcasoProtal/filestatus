@@ -1,4 +1,6 @@
 import * as vscode from 'vscode';
+import * as path from 'path';
+import * as fs from 'fs';
 
 let fileStatusBarItem: vscode.StatusBarItem;
 
@@ -23,8 +25,14 @@ export function activate(context: vscode.ExtensionContext) {
 }
 
 function updateStatusBarItem(): void {
-	fileStatusBarItem.text = 'Hello!';
-	fileStatusBarItem.show();
+	const currentFilePath = vscode.window.activeTextEditor?.document.fileName;
+	if (currentFilePath) {
+
+		fileStatusBarItem.text = `$(file) ${path.basename(currentFilePath)}`;
+		fileStatusBarItem.show();
+	} else {
+		fileStatusBarItem.hide();
+	}
 }
 
 export function deactivate() { }
