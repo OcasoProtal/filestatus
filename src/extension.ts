@@ -36,6 +36,7 @@ function updateStatusBarItem(): void {
 		const fileSize = getFileSize(stats.size);
 
 		fileStatusBarItem.text = `$(file) ${path.basename(currentFilePath)}: ${fileSize} ${modDate}`;
+		fileStatusBarItem.tooltip = `Full path: ${currentFilePath}\nFile Size: ${stats.size}\nLast modified:${stats.mtime.toISOString()}`;
 		fileStatusBarItem.show();
 	} else {
 		fileStatusBarItem.hide();
