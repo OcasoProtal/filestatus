@@ -28,13 +28,22 @@ function updateStatusBarItem(): void {
 	const currentFilePath = vscode.window.activeTextEditor?.document.fileName;
 	if (currentFilePath) {
 		const stats = fs.statSync(currentFilePath);
-		var fileSize = getFileSize(stats.size);
+		const modDate = getDateString(stats.mtime);
+		const fileSize = getFileSize(stats.size);
 
-		fileStatusBarItem.text = `$(file) ${path.basename(currentFilePath)}: ${fileSize}`;
+		fileStatusBarItem.text = `$(file) ${path.basename(currentFilePath)}: ${fileSize} ${modDate}`;
 		fileStatusBarItem.show();
 	} else {
 		fileStatusBarItem.hide();
 	}
+}
+
+function getDateString (fileDate: Date):string {
+	const curDate = new Date;
+	if(curDate.toDateString() === fileDate.toDateString()){
+		return fileDate.toLocaleTimeString();
+	}
+	return fileDate.toISOString().split("T")[0];
 }
 
 function getFileSize(fileSize: number):string {
