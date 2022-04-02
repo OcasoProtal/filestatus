@@ -19,6 +19,10 @@ export function activate(context: vscode.ExtensionContext) {
 	fileStatusBarItem.command = fileStatusCommandId;
 	context.subscriptions.push(fileStatusBarItem);
 
+	// register some listener that make sure the status bar item always up-to-date
+	context.subscriptions.push(vscode.window.onDidChangeActiveTextEditor(updateStatusBarItem));
+	context.subscriptions.push(vscode.workspace.onDidSaveTextDocument(updateStatusBarItem));
+
 	// update status bar item once at start
 	updateStatusBarItem();
 
@@ -38,25 +42,25 @@ function updateStatusBarItem(): void {
 	}
 }
 
-function getDateString (fileDate: Date):string {
+function getDateString(fileDate: Date): string {
 	const curDate = new Date;
-	if(curDate.toDateString() === fileDate.toDateString()){
+	if (curDate.toDateString() === fileDate.toDateString()) {
 		return fileDate.toLocaleTimeString();
 	}
 	return fileDate.toISOString().split("T")[0];
 }
 
-function getFileSize(fileSize: number):string {
+function getFileSize(fileSize: number): string {
 	if (fileSize < 1024) {
 		return `${fileSize.toString()}B`;
 	}
-	if (fileSize < 1024*1024) {
-		return `${(fileSize/1024).toFixed(2)}KB`;
+	if (fileSize < 1024 * 1024) {
+		return `${(fileSize / 1024).toFixed(2)}KB`;
 	}
-	if (fileSize < 1024*1024*1024) {
-		return `${(fileSize/ (1024*1024)).toFixed(2)}MB`;
+	if (fileSize < 1024 * 1024 * 1024) {
+		return `${(fileSize / (1024 * 1024)).toFixed(2)}MB`;
 	}
-	return `${(fileSize/ (1024*1024*1024)).toFixed(2)}GB`;
+	return `${(fileSize / (1024 * 1024 * 1024)).toFixed(2)}GB`;
 }
 
 export function deactivate() { }
