@@ -20,7 +20,17 @@
 				"command": "filestatus.fileStatus",
 				"title": "File Status"
 			}
-		]
+		],
+		"configuration": {
+			"title": "File Status",
+			"properties": {
+			  "fileStatus.displayFilename": {
+				"type": "boolean",
+				"default": false,
+				"description": "Display filename in the statusbar"
+			  }
+			}
+		  }
 	},
 	"scripts": {
 		"vscode:prepublish": "npm run compile",
