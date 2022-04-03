@@ -31,12 +31,12 @@
 			  },
 			  "fileStatus.displayFileSize": {
 				"type": "boolean",
-				"default": false,
+				"default": true,
 				"description": "Display file size in the statusbar"
 			  },
 			  "fileStatus.displayFileModificationTime": {
 				"type": "boolean",
-				"default": false,
+				"default": true,
 				"description": "Display modification time of the file in the statusbar"
 			  }
 			}
