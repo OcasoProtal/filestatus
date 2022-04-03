@@ -34,8 +34,17 @@ function updateStatusBarItem(): void {
 		const stats = fs.statSync(currentFilePath);
 		const modDate = getDateString(stats.mtime);
 		const fileSize = getFileSize(stats.size);
-
-		fileStatusBarItem.text = `$(file) ${path.basename(currentFilePath)}: ${fileSize} ${modDate}`;
+		var text = '$(file) ';
+		if (vscode.workspace.getConfiguration('fileStatus').get('displayFileName')){
+			text += `${path.basename(currentFilePath)} `;
+		}
+		if (vscode.workspace.getConfiguration('fileStatus').get('displayFileSize')){
+			text += `${fileSize} `;
+		}
+		if (vscode.workspace.getConfiguration('fileStatus').get('displayFileModificationTime')){
+			text += `${modDate} `;
+		}
+		fileStatusBarItem.text = text; //`$(file) ${path.basename(currentFilePath)}: ${fileSize} ${modDate}`;
 		fileStatusBarItem.tooltip = `Full path: ${currentFilePath}\nFile Size: ${stats.size}\nLast modified:${stats.mtime.toISOString()}`;
 		fileStatusBarItem.show();
 	} else {
