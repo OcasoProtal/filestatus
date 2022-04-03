@@ -24,10 +24,20 @@
 		"configuration": {
 			"title": "File Status",
 			"properties": {
-			  "fileStatus.displayFilename": {
+			  "fileStatus.displayFileName": {
 				"type": "boolean",
 				"default": false,
 				"description": "Display filename in the statusbar"
+			  },
+			  "fileStatus.displayFileSize": {
+				"type": "boolean",
+				"default": false,
+				"description": "Display file size in the statusbar"
+			  },
+			  "fileStatus.displayFileModificationTime": {
+				"type": "boolean",
+				"default": false,
+				"description": "Display modification time of the file in the statusbar"
 			  }
 			}
 		  }
