@@ -4,6 +4,7 @@
 	"description": "Display various file properties in the status bar",
 	"version": "0.0.1",
 	"license": "GPL-3.0-or-later",
+	"publisher": "ocasoprotal",
 	"repository": {
 		"type": "git",
 		"directory": "https://github.com/OcasoProtal/filestatus.git"
