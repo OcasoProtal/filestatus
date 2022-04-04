@@ -8,8 +8,16 @@ import * as vscode from 'vscode';
 suite('Extension Test Suite', () => {
 	vscode.window.showInformationMessage('Start all tests.');
 
-	test('Sample test', () => {
-		assert.strictEqual(-1, [1, 2, 3].indexOf(5));
-		assert.strictEqual(-1, [1, 2, 3].indexOf(0));
+	test('Extension loaded', () => {
+		assert.strictEqual(undefined, vscode.extensions.getExtension('fileStatus'));
+	});
+	test('Display file name is not set', () => {
+		assert.strictEqual(false, vscode.workspace.getConfiguration('fileStatus').get('displayFileName'));
+	});
+	test('Display file size is set', () => {
+		assert.strictEqual(true, vscode.workspace.getConfiguration('fileStatus').get('displayFileSize'));
+	});
+	test('Display file modification time is set', () => {
+		assert.strictEqual(true, vscode.workspace.getConfiguration('fileStatus').get('displayFileModificationTime'));
 	});
 });
