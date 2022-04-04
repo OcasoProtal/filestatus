@@ -31,26 +31,30 @@ export function activate(context: vscode.ExtensionContext) {
 function updateStatusBarItem(): void {
 	const currentFilePath = vscode.window.activeTextEditor?.document.fileName;
 	if (currentFilePath) {
-		const stats = fs.statSync(currentFilePath);
-		const modDate = getDateString(stats.mtime);
-		const fileSize = getFileSize(stats.size);
-		var text = '$(file) ';
-		if (vscode.workspace.getConfiguration('fileStatus').get('displayFileName')) {
-			text += `${path.basename(currentFilePath)} `;
-		}
-		if (vscode.workspace.getConfiguration('fileStatus').get('displayFileSize')) {
-			text += `${fileSize} `;
-		}
-		if (vscode.workspace.getConfiguration('fileStatus').get('displayFileModificationTime')) {
-			text += `${modDate} `;
-		}
-		fileStatusBarItem.text = text; //`$(file) ${path.basename(currentFilePath)}: ${fileSize} ${modDate}`;
-		fileStatusBarItem.tooltip = `Full path: ${currentFilePath}\nFile Size: ${stats.size}\nLast modified: ${stats.mtime.toISOString()
-			.replace('T', ' ').split('.')[0]}`;
+		setFileStatusText(currentFilePath);
 		fileStatusBarItem.show();
 	} else {
 		fileStatusBarItem.hide();
 	}
+}
+
+function setFileStatusText(currentFilePath: string) : void {
+	const stats = fs.statSync(currentFilePath);
+	const modDate = getDateString(stats.mtime);
+	const fileSize = getFileSize(stats.size);
+	var text = '$(file) ';
+	if (vscode.workspace.getConfiguration('fileStatus').get('displayFileName')) {
+		text += `${path.basename(currentFilePath)} `;
+	}
+	if (vscode.workspace.getConfiguration('fileStatus').get('displayFileSize')) {
+		text += `${fileSize} `;
+	}
+	if (vscode.workspace.getConfiguration('fileStatus').get('displayFileModificationTime')) {
+		text += `${modDate} `;
+	}
+	fileStatusBarItem.text = text; //`$(file) ${path.basename(currentFilePath)}: ${fileSize} ${modDate}`;
+	fileStatusBarItem.tooltip = `Full path: ${currentFilePath}\nFile Size: ${stats.size}\nLast modified: ${stats.mtime.toISOString()
+		.replace('T', ' ').split('.')[0]}`;
 }
 
 function getDateString(fileDate: Date): string {
