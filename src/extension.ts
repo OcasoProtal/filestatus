@@ -35,17 +35,18 @@ function updateStatusBarItem(): void {
 		const modDate = getDateString(stats.mtime);
 		const fileSize = getFileSize(stats.size);
 		var text = '$(file) ';
-		if (vscode.workspace.getConfiguration('fileStatus').get('displayFileName')){
+		if (vscode.workspace.getConfiguration('fileStatus').get('displayFileName')) {
 			text += `${path.basename(currentFilePath)} `;
 		}
-		if (vscode.workspace.getConfiguration('fileStatus').get('displayFileSize')){
+		if (vscode.workspace.getConfiguration('fileStatus').get('displayFileSize')) {
 			text += `${fileSize} `;
 		}
-		if (vscode.workspace.getConfiguration('fileStatus').get('displayFileModificationTime')){
+		if (vscode.workspace.getConfiguration('fileStatus').get('displayFileModificationTime')) {
 			text += `${modDate} `;
 		}
 		fileStatusBarItem.text = text; //`$(file) ${path.basename(currentFilePath)}: ${fileSize} ${modDate}`;
-		fileStatusBarItem.tooltip = `Full path: ${currentFilePath}\nFile Size: ${stats.size}\nLast modified:${stats.mtime.toISOString()}`;
+		fileStatusBarItem.tooltip = `Full path: ${currentFilePath}\nFile Size: ${stats.size}\nLast modified: ${stats.mtime.toISOString()
+			.replace('T', ' ').split('.')[0]}`;
 		fileStatusBarItem.show();
 	} else {
 		fileStatusBarItem.hide();
