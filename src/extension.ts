@@ -30,7 +30,7 @@ export function activate(context: vscode.ExtensionContext) {
 
 function updateStatusBarItem(): void {
 	const currentFilePath = vscode.window.activeTextEditor?.document.fileName;
-	if (currentFilePath) {
+	if (currentFilePath && fs.existsSync(currentFilePath)) {
 		setFileStatusText(currentFilePath);
 		fileStatusBarItem.show();
 	} else {
@@ -39,9 +39,6 @@ function updateStatusBarItem(): void {
 }
 
 function setFileStatusText(currentFilePath: string): void {
-	if (!fs.existsSync(currentFilePath)) {
-		return;
-	}
 	const stats = fs.statSync(currentFilePath);
 	const modDate = getDateString(stats.mtime);
 	const fileSize = getFileSize(stats.size);
