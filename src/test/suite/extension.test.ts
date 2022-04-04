@@ -9,7 +9,7 @@ suite('Extension Test Suite', () => {
 	vscode.window.showInformationMessage('Start all tests.');
 
 	test('Extension loaded', () => {
-		assert.strictEqual(undefined, vscode.extensions.getExtension('fileStatus'));
+		assert.notStrictEqual(undefined, vscode.extensions.getExtension('ocasoprotal.filestatus'));
 	});
 	test('Display file name is not set', () => {
 		assert.strictEqual(false, vscode.workspace.getConfiguration('fileStatus').get('displayFileName'));
