@@ -1,8 +1,13 @@
 {
-  "name": "filestatus",
+	"name": "filestatus",
 	"displayName": "FileStatus",
 	"description": "Display various file properties in the status bar",
 	"version": "0.0.1",
+	"license": "GPL-3.0-or-later",
+	"repository": {
+		"type": "git",
+		"directory": "https://github.com/OcasoProtal/filestatus.git"
+	},
 	"engines": {
 		"vscode": "^1.66.0"
 	},
@@ -11,7 +16,7 @@
 	],
 	"activationEvents": [
 		"onStartupFinished",
-        "onCommand:filestatus.fileStatus"
+		"onCommand:filestatus.fileStatus"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
@@ -24,23 +29,23 @@
 		"configuration": {
 			"title": "File Status",
 			"properties": {
-			  "fileStatus.displayFileName": {
-				"type": "boolean",
-				"default": false,
-				"description": "Display filename in the statusbar"
-			  },
-			  "fileStatus.displayFileSize": {
-				"type": "boolean",
-				"default": true,
-				"description": "Display file size in the statusbar"
-			  },
-			  "fileStatus.displayFileModificationTime": {
-				"type": "boolean",
-				"default": true,
-				"description": "Display modification time of the file in the statusbar"
-			  }
+				"fileStatus.displayFileName": {
+					"type": "boolean",
+					"default": false,
+					"description": "Display filename in the statusbar"
+				},
+				"fileStatus.displayFileSize": {
+					"type": "boolean",
+					"default": true,
+					"description": "Display file size in the statusbar"
+				},
+				"fileStatus.displayFileModificationTime": {
+					"type": "boolean",
+					"default": true,
+					"description": "Display modification time of the file in the statusbar"
+				}
 			}
-		  }
+		}
 	},
 	"scripts": {
 		"vscode:prepublish": "npm run compile",
