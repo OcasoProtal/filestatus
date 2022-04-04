@@ -38,7 +38,10 @@ function updateStatusBarItem(): void {
 	}
 }
 
-function setFileStatusText(currentFilePath: string) : void {
+function setFileStatusText(currentFilePath: string): void {
+	if (!fs.existsSync(currentFilePath)) {
+		return;
+	}
 	const stats = fs.statSync(currentFilePath);
 	const modDate = getDateString(stats.mtime);
 	const fileSize = getFileSize(stats.size);
