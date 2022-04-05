@@ -6,7 +6,7 @@
 
 Display different file properties like file size or modification date in the status bar.
 
-\!\[File size and modification time\]\(images/Screenshot001.png\)
+![File size and modification time](images/Screenshot001.png)
 
 <!-- For example if there is an image subfolder under your extension project workspace:
 
