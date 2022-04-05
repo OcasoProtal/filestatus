@@ -10,7 +10,6 @@ Display different file properties like file size or modification date in the sta
 
 \!\[feature X\]\(images/feature-x.png\)
 
-
 ## Extension Settings
 
 Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
@@ -28,7 +27,6 @@ Calling out known issues can help limit users opening duplicate issues against y
 
 ## Release Notes
 
-
-### 1.0.0
+### 0.9.0
 
 Initial release of File Status
