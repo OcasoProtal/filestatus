@@ -22,6 +22,7 @@ export function activate(context: vscode.ExtensionContext) {
 	// register some listener that make sure the status bar item always up-to-date
 	context.subscriptions.push(vscode.window.onDidChangeActiveTextEditor(updateStatusBarItem));
 	context.subscriptions.push(vscode.workspace.onDidSaveTextDocument(updateStatusBarItem));
+	context.subscriptions.push(vscode.workspace.onDidChangeTextDocument(updateStatusBarItemNoFile));
 
 	// update status bar item once at start
 	updateStatusBarItem();
@@ -38,6 +39,18 @@ function updateStatusBarItem(): void {
 		fileStatusBarItem.show();
 	} else {
 		fileStatusBarItem.hide();
+	}
+}
+
+function updateStatusBarItemNoFile(): void {
+	const currentFilePath = vscode.window.activeTextEditor?.document.fileName;
+	if (currentFilePath && fs.existsSync(currentFilePath)) {
+		return ;
+	}
+	else if (currentFilePath) {
+		// console.debug(new Date());
+		setFileStatusTextMinimal(currentFilePath);
+		fileStatusBarItem.show();
 	}
 }
 
