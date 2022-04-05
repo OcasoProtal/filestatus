@@ -33,6 +33,9 @@ function updateStatusBarItem(): void {
 	if (currentFilePath && fs.existsSync(currentFilePath)) {
 		setFileStatusText(currentFilePath);
 		fileStatusBarItem.show();
+	} else if (currentFilePath) {
+		setFileStatusTextMinimal(currentFilePath);
+		fileStatusBarItem.show();
 	} else {
 		fileStatusBarItem.hide();
 	}
@@ -55,6 +58,11 @@ function setFileStatusText(currentFilePath: string): void {
 	fileStatusBarItem.text = text; //`$(file) ${path.basename(currentFilePath)}: ${fileSize} ${modDate}`;
 	fileStatusBarItem.tooltip = `Full path: ${currentFilePath}\nFile Size: ${stats.size}\nLast modified: ${stats.mtime.toISOString()
 		.replace('T', ' ').split('.')[0]}`;
+}
+
+function setFileStatusTextMinimal(currentFilePath: string): void {
+	console.debug(currentFilePath);
+	fileStatusBarItem.text = '$(file)';
 }
 
 function getDateString(fileDate: Date): string {
