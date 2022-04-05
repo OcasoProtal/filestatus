@@ -12,12 +12,12 @@ suite('Extension Test Suite', () => {
 		assert.notStrictEqual(undefined, vscode.extensions.getExtension('ProtalMatter.pmfilestatus'));
 	});
 	test('Display file name is not set', () => {
-		assert.strictEqual(false, vscode.workspace.getConfiguration('fileStatus').get('displayFileName'));
+		assert.strictEqual(false, vscode.workspace.getConfiguration('pmFileStatus').get('displayFileName'));
 	});
 	test('Display file size is set', () => {
-		assert.strictEqual(true, vscode.workspace.getConfiguration('fileStatus').get('displayFileSize'));
+		assert.strictEqual(true, vscode.workspace.getConfiguration('pmFileStatus').get('displayFileSize'));
 	});
 	test('Display file modification time is set', () => {
-		assert.strictEqual(true, vscode.workspace.getConfiguration('fileStatus').get('displayFileModificationTime'));
+		assert.strictEqual(true, vscode.workspace.getConfiguration('pmFileStatus').get('displayFileModificationTime'));
 	});
 });

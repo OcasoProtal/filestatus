@@ -30,17 +30,17 @@
 		"configuration": {
 			"title": "File Status",
 			"properties": {
-				"fileStatus.displayFileName": {
+				"pmFileStatus.displayFileName": {
 					"type": "boolean",
 					"default": false,
 					"description": "Display filename in the statusbar"
 				},
-				"fileStatus.displayFileSize": {
+				"pmFileStatus.displayFileSize": {
 					"type": "boolean",
 					"default": true,
 					"description": "Display file size in the statusbar"
 				},
-				"fileStatus.displayFileModificationTime": {
+				"pmFileStatus.displayFileModificationTime": {
 					"type": "boolean",
 					"default": true,
 					"description": "Display modification time of the file in the statusbar"
