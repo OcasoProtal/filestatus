@@ -5,6 +5,7 @@
 	"version": "0.9.0",
 	"license": "GPL-3.0-or-later",
 	"publisher": "ProtalMatter",
+	"icon": "images/icon.png",
 	"repository": {
 		"type": "git",
 		"directory": "https://github.com/OcasoProtal/filestatus.git"
