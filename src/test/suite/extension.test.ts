@@ -9,7 +9,7 @@ suite('Extension Test Suite', () => {
 	vscode.window.showInformationMessage('Start all tests.');
 
 	test('Extension loaded', () => {
-		assert.notStrictEqual(undefined, vscode.extensions.getExtension('ProtalMatter.filestatus'));
+		assert.notStrictEqual(undefined, vscode.extensions.getExtension('ProtalMatter.pmfilestatus'));
 	});
 	test('Display file name is not set', () => {
 		assert.strictEqual(false, vscode.workspace.getConfiguration('fileStatus').get('displayFileName'));
