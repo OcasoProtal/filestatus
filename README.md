@@ -12,19 +12,19 @@ Some examples:
 
 * File size and modification time. The file was modified today, so showing modifcation time
 
-  ![File size and modification time](images/fs_modtime_today.png)
+  ![File size and modification time](./images/fs_modtime_today.png)
 
 * File size and modification date. Showing only the date since the File was modified on an earlier date.
 
-  ![File size and modification time](images/fs_modtime_earlier.png)
+  ![File size and modification time](./images/fs_modtime_earlier.png)
 
 * File name and file size:  
 
-  ![File size and modification time](images/name_fs.png)
+  ![File size and modification time](./images/name_fs.png)
 
 * Tooltip of a new file:
 
-  ![File size and modification time](images/tooltip.png)
+  ![File size and modification time](./images/tooltip.png)
 
 ## Extension Settings
 
