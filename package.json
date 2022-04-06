@@ -18,13 +18,13 @@
 	],
 	"activationEvents": [
 		"onStartupFinished",
-		"onCommand:filestatus.fileStatus"
+		"onCommand:pmfilestatus.fileStatus"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
 		"commands": [
 			{
-				"command": "filestatus.fileStatus",
+				"command": "pmfilestatus.fileStatus",
 				"title": "File Status"
 			}
 		],

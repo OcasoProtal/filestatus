@@ -3,19 +3,21 @@ import * as path from 'path';
 import * as fs from 'fs';
 
 let fileStatusBarItem: vscode.StatusBarItem;
+let state: vscode.Memento;
 
 export function activate(context: vscode.ExtensionContext) {
 	// register the command that is invoked on status bar click
-	const fileStatusCommandId = 'filestatus.fileStatus';
+	const fileStatusCommandId = 'pmfilestatus.fileStatus';
+	state = context.workspaceState;
 
-	let disposable = vscode.commands.registerCommand('filestatus.fileStatus', () => {
-		console.log('clicked');
+	let disposable = vscode.commands.registerCommand('pmfilestatus.fileStatus', () => {
+		updateStatusBarItem();
 	});
 
 	context.subscriptions.push(disposable);
 
 	// create a new status bar item that we can now manage
-	fileStatusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 100);
+	fileStatusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 1);
 	fileStatusBarItem.command = fileStatusCommandId;
 	context.subscriptions.push(fileStatusBarItem);
 
@@ -26,7 +28,6 @@ export function activate(context: vscode.ExtensionContext) {
 
 	// update status bar item once at start
 	updateStatusBarItem();
-
 }
 
 function updateStatusBarItem(): void {
@@ -48,7 +49,7 @@ function updateStatusBarItemNoFile(): void {
 		return ;
 	}
 	else if (currentFilePath) {
-		// console.debug(new Date());
+		state.update(currentFilePath, new Date());
 		setFileStatusTextMinimal(currentFilePath);
 		fileStatusBarItem.show();
 	}
@@ -58,24 +59,30 @@ function setFileStatusText(currentFilePath: string): void {
 	const stats = fs.statSync(currentFilePath);
 	const modDate = getDateString(stats.mtime);
 	const fileSize = getFileSize(stats.size);
-	var text = '$(file) ';
-	if (vscode.workspace.getConfiguration('fileStatus').get('displayFileName')) {
+	var text = `$(file) `;
+	if (vscode.workspace.getConfiguration('pmFileStatus').get('displayFileName')) {
 		text += `${path.basename(currentFilePath)} `;
 	}
-	if (vscode.workspace.getConfiguration('fileStatus').get('displayFileSize')) {
+	if (vscode.workspace.getConfiguration('pmFileStatus').get('displayFileSize')) {
 		text += `${fileSize} `;
 	}
-	if (vscode.workspace.getConfiguration('fileStatus').get('displayFileModificationTime')) {
+	if (vscode.workspace.getConfiguration('pmFileStatus').get('displayFileModificationTime')) {
 		text += `${modDate} `;
 	}
-	fileStatusBarItem.text = text; //`$(file) ${path.basename(currentFilePath)}: ${fileSize} ${modDate}`;
+	fileStatusBarItem.text = text;
 	fileStatusBarItem.tooltip = `Full path: ${currentFilePath}\nFile Size: ${stats.size}\nLast modified: ${stats.mtime.toISOString()
 		.replace('T', ' ').split('.')[0]}`;
 }
 
 function setFileStatusTextMinimal(currentFilePath: string): void {
-	console.debug(currentFilePath);
-	fileStatusBarItem.text = '$(file)';
+	var text = `$(file) `;
+	const modDate = state.get(currentFilePath);
+	if(modDate instanceof Date){
+		if (vscode.workspace.getConfiguration('pmFileStatus').get('displayFileModificationTime')) {
+			text += `${getDateString(modDate)} `;
+		}
+	}
+	fileStatusBarItem.text = text;
 }
 
 function getDateString(fileDate: Date): string {
