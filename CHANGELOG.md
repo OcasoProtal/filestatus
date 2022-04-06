@@ -1,3 +1,4 @@
+<!-- markdownlint-disable MD024 -->
 # Change Log
 
 All notable changes to the "filestatus" extension will be documented in this file.
@@ -5,6 +6,13 @@ All notable changes to the "filestatus" extension will be documented in this fil
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 ## [Unreleased]
+
+## [1.0.0] - 2022-04-06
+
+### Added
+
+- Handle new files (modification time only)
+- Update data on click
 
 ## [0.9.0] - 2022-04-05
 
