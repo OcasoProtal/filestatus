@@ -81,6 +81,10 @@ function setFileStatusTextMinimal(currentFilePath: string): void {
 		if (vscode.workspace.getConfiguration('pmFileStatus').get('displayFileModificationTime')) {
 			text += `${getDateString(modDate)} `;
 		}
+		fileStatusBarItem.tooltip = `${currentFilePath}\nLast modified: ${modDate.toISOString()
+			.replace('T', ' ').split('.')[0]}`; 
+	} else {
+		fileStatusBarItem.tooltip = ``;
 	}
 	fileStatusBarItem.text = text;
 }
