@@ -1,6 +1,7 @@
 import * as vscode from 'vscode';
 import * as path from 'path';
 import * as fs from 'fs';
+import { toIsoStringShort } from './helper';
 
 let fileStatusBarItem: vscode.StatusBarItem;
 let state: vscode.Memento;
@@ -70,8 +71,7 @@ function setFileStatusText(currentFilePath: string): void {
 		text += `${modDate} `;
 	}
 	fileStatusBarItem.text = text;
-	fileStatusBarItem.tooltip = `Full path: ${currentFilePath}\nFile Size: ${stats.size}\nLast modified: ${stats.mtime
-		.toLocaleString('sv', { timeZoneName: 'short' })}`;
+	fileStatusBarItem.tooltip = `Full path: ${currentFilePath}\nFile Size: ${stats.size}\nLast modified: ${toIsoStringShort(stats.mtime)}`;
 }
 
 function setFileStatusTextMinimal(currentFilePath: string): void {
@@ -84,7 +84,7 @@ function setFileStatusTextMinimal(currentFilePath: string): void {
 		if (vscode.workspace.getConfiguration('pmFileStatus').get('displayFileModificationTime')) {
 			text += `${getDateString(modDate)} `;
 		}
-		fileStatusBarItem.tooltip = `${currentFilePath}\nLast modified: ${modDate.toLocaleString('sv', { timeZoneName: 'short' })}`;
+		fileStatusBarItem.tooltip = `${currentFilePath}\nLast modified: ${toIsoStringShort(modDate)}`;
 	} else {
 		fileStatusBarItem.tooltip = ``;
 	}
