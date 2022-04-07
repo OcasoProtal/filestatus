@@ -46,7 +46,7 @@ function updateStatusBarItem(): void {
 function updateStatusBarItemNoFile(): void {
 	const currentFilePath = vscode.window.activeTextEditor?.document.fileName;
 	if (currentFilePath && fs.existsSync(currentFilePath)) {
-		return ;
+		return;
 	}
 	else if (currentFilePath) {
 		state.update(currentFilePath, new Date());
@@ -70,22 +70,21 @@ function setFileStatusText(currentFilePath: string): void {
 		text += `${modDate} `;
 	}
 	fileStatusBarItem.text = text;
-	fileStatusBarItem.tooltip = `Full path: ${currentFilePath}\nFile Size: ${stats.size}\nLast modified: ${stats.mtime.toISOString()
-		.replace('T', ' ').split('.')[0]}`;
+	fileStatusBarItem.tooltip = `Full path: ${currentFilePath}\nFile Size: ${stats.size}\nLast modified: ${stats.mtime
+		.toLocaleString('sv', { timeZoneName: 'short' })}`;
 }
 
 function setFileStatusTextMinimal(currentFilePath: string): void {
 	var text = `$(file) `;
 	let modDate = state.get<Date>(currentFilePath);
-	if (typeof modDate === 'string'){
+	if (typeof modDate === 'string') {
 		modDate = new Date(modDate);
 	}
-	if(modDate instanceof Date){
+	if (modDate instanceof Date) {
 		if (vscode.workspace.getConfiguration('pmFileStatus').get('displayFileModificationTime')) {
 			text += `${getDateString(modDate)} `;
 		}
-		fileStatusBarItem.tooltip = `${currentFilePath}\nLast modified: ${modDate.toISOString()
-			.replace('T', ' ').split('.')[0]}`; 
+		fileStatusBarItem.tooltip = `${currentFilePath}\nLast modified: ${modDate.toLocaleString('sv', { timeZoneName: 'short' })}`;
 	} else {
 		fileStatusBarItem.tooltip = ``;
 	}
