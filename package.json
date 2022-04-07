@@ -2,7 +2,7 @@
 	"name": "pmfilestatus",
 	"displayName": "FileStatus",
 	"description": "Display various file properties in the status bar",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"license": "GPL-3.0-or-later",
 	"publisher": "ProtalMatter",
 	"icon": "images/icon.png",
