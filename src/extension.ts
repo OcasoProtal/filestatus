@@ -76,7 +76,10 @@ function setFileStatusText(currentFilePath: string): void {
 
 function setFileStatusTextMinimal(currentFilePath: string): void {
 	var text = `$(file) `;
-	const modDate = state.get(currentFilePath);
+	let modDate = state.get<Date>(currentFilePath);
+	if (typeof modDate === 'string'){
+		modDate = new Date(modDate);
+	}
 	if(modDate instanceof Date){
 		if (vscode.workspace.getConfiguration('pmFileStatus').get('displayFileModificationTime')) {
 			text += `${getDateString(modDate)} `;
