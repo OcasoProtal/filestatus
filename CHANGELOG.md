@@ -7,6 +7,13 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Unreleased]
 
+## [1.0.1] - 2022-04-07
+
+### Fixed
+
+- Displayed time as UTC in tooltip
+- Restore date for unsaved files over sessions
+
 ## [1.0.0] - 2022-04-06
 
 ### Added
