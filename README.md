@@ -8,6 +8,8 @@ Display different file properties like file size or modification date in the sta
 
 For the modification time the following rule applies: If the modification date is the same as the actual date, the modification time is shown. Otherwise the modification date is shown.
 
+You can click on the extension in the satus bar to force an update.
+
 Some examples:
 
 * File size and modification time. The file was modified today, so showing modifcation time
@@ -40,6 +42,11 @@ Calling out known issues can help limit users opening duplicate issues against y
 
 ## Release Notes
 
+### 1.0.1
+
+* Fixed: Displayed time as UTC in tooltip
+* Fixed: Restore date for unsaved files over sessions
+
 ### 1.0.0
 
 * added handling of new files
@@ -47,4 +54,4 @@ Calling out known issues can help limit users opening duplicate issues against y
 
 ### 0.9.0
 
-Initial release of File Status
+* Initial release of File Status
